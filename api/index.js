@@ -4,6 +4,8 @@ const csv = require('csv-parser');
 const cors = require('cors');
 const app = express();
 
+const port = process.env.PORT || 8000;
+
 let vehicleData = [];
 app.use(cors());
 
