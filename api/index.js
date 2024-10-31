@@ -16,11 +16,11 @@ fs.createReadStream('Electric_Vehicle_Population_Data.csv')
   });
 
 // Import API routes from controllers
-const overviewController = require('./api/controllers/overviewController');
-const geoController = require('./api/controllers/geoController');
-const characteristicsController = require('./api/controllers/characteristicsController');
-const trendsController = require('./api/controllers/trendsController');
-const insightsController = require('./api/controllers/insightsController');
+const overviewController = require('./controllers/overviewController');
+const geoController = require('./controllers/geoController');
+const characteristicsController = require('./controllers/characteristicsController');
+const trendsController = require('./controllers/trendsController');
+const insightsController = require('./controllers/insightsController');
 
 // Overview Dashboard
 app.get('/overview/totalCounts', (req, res) => overviewController.totalCounts(vehicleData, res));
