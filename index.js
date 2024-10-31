@@ -4,7 +4,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const cors = require('cors');
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 let vehicleData = [];
 app.use(cors());
@@ -51,4 +51,5 @@ app.get('/utility/legislativeDistrict', (req, res) => insightsController.legisla
 // avgElectricRangeByMake
 app.get('/characteristics/avgElectricRangeByMake', (req, res) => characteristicsController.avgElectricRangeByMake(vehicleData, res));
 
+module.exports = app;
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
