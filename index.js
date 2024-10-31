@@ -1,10 +1,10 @@
+// index.js
 const express = require('express');
 const fs = require('fs');
 const csv = require('csv-parser');
 const cors = require('cors');
 const app = express();
-
-const port = process.env.PORT || 8000;
+const port = 8000;
 
 let vehicleData = [];
 app.use(cors());
@@ -48,9 +48,7 @@ app.get('/insights/electricVsNonElectric', (req, res) => insightsController.elec
 // Utility & Legislative Insights
 app.get('/utility/electricUtilityDistribution', (req, res) => insightsController.utilityDistribution(vehicleData, res));
 app.get('/utility/legislativeDistrict', (req, res) => insightsController.legislativeDistrict(vehicleData, res));
-
-// Average Electric Range By Make
+// avgElectricRangeByMake
 app.get('/characteristics/avgElectricRangeByMake', (req, res) => characteristicsController.avgElectricRangeByMake(vehicleData, res));
 
-// Export the app as a serverless function
-module.exports = app;
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
