@@ -55,3 +55,4 @@ app.get('/utility/legislativeDistrict', (req, res) => insightsController.legisla
 app.get('/characteristics/avgElectricRangeByMake', (req, res) => characteristicsController.avgElectricRangeByMake(vehicleData, res));
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+module.exports = app;
