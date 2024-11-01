@@ -8,13 +8,14 @@ exports.totalCounts = async (req, res) => {
       const electricVehicles = vehicleData.filter(vehicle => vehicle['Electric Vehicle Type']).length;
       const percentageElectric = ((electricVehicles / totalVehicles) * 100).toFixed(2);
   
-      res.json({
+      res.status(200).json({
         totalVehicles,
         electricVehicles,
         percentageElectric
       });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to load data' });
+      console.error("Error in totalCounts:", error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   };
 
@@ -42,12 +43,10 @@ exports.topMetrics = async (req, res) => {
         .slice(0, 5)
         .map(([county, count]) => ({ name: county, value: count }));
   
-      res.json({
-        topMakes,
-        topCounties
-      });
+      res.status(200).json({ topMakes, topCounties });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to load data' });
+      console.error("Error in topMetrics:", error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   };
   
