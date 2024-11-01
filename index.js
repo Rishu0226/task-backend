@@ -10,7 +10,12 @@ let vehicleData = [];
 app.use(cors());
 
 // Load data from CSV on startup
-
+fs.createReadStream('Electric_Vehicle_Population_Data.json')
+  .pipe(csv())
+  .on('data', (row) => vehicleData.push(row))
+  .on('end', () => {
+    console.log('CSV file successfully processed');
+  });
 
 // Import API routes from controllers
 const overviewController = require('./controllers/overviewController');
@@ -18,15 +23,6 @@ const geoController = require('./controllers/geoController');
 const characteristicsController = require('./controllers/characteristicsController');
 const trendsController = require('./controllers/trendsController');
 const insightsController = require('./controllers/insightsController');
-const loadCSVData = require('./loadCSV');
-
-
-loadCSVData()
-  .then((data) => {
-    vehicleData = data;
-    console.log('CSV data loaded successfully');
-  })
-  .catch((error) => console.error('Error loading CSV data:', error));
 
 // Overview Dashboard
 app.get('/overview/totalCounts', (req, res) => overviewController.totalCounts(vehicleData, res));
