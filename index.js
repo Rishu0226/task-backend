@@ -7,7 +7,10 @@ const app = express();
 const port = 8000;
 
 let vehicleData = [];
-app.use(cors());
+app.use(cors({
+  origin: '*', // or specify your domain
+  methods: ['GET', 'POST']
+}));
 
 // Load data from CSV on startup
 fs.createReadStream('Electric_Vehicle_Population_Data.json')
