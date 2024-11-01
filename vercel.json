@@ -1,0 +1,7 @@
+{
+    "rewrites": [
+      { "source": "/overview/totalCounts", "destination": "/overview/totalCounts" },
+      { "source": "/overview/topMetrics", "destination": "/overview/topMetrics" }
+    ]
+  }
+  
